@@ -1,0 +1,13 @@
+{
+  "$schema": "https://kiro.dev/schemas/hook-v1.json",
+  "name": "on-file-save-check",
+  "description": "Executa verificações básicas de formatação, sintaxe e checagem de segredos após salvar arquivos",
+  "trigger": "PostFileSave",
+  "filters": {
+    "filePatterns": ["src/**/*", "tests/**/*"]
+  },
+  "action": {
+    "type": "prompt",
+    "prompt": "Verifique se o arquivo recém-salvo não contém credenciais ou chaves expostas, segue a Clean Architecture definida no steering e não quebra os contratos de tipos."
+  }
+}

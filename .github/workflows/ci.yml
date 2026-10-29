@@ -1,0 +1,32 @@
+name: CI & Spec Verification
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  spec-integrity:
+    name: Validação de Specs e Metodologia SDD
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v4
+
+      - name: Checagem de Estrutura SDD (.kiro/specs)
+        run: |
+          echo "Verificando se diretórios fundamentais do Kiro existem..."
+          test -d .kiro/specs || (echo "ERRO: Diretório .kiro/specs não encontrado!" && exit 1)
+          test -d .kiro/steering || (echo "ERRO: Diretório .kiro/steering não encontrado!" && exit 1)
+          test -d .kiro/skills || (echo "ERRO: Diretório .kiro/skills não encontrado!" && exit 1)
+          echo "Estrutura do Kiro SDD validada com sucesso!"
+
+      - name: Verificação contra Vazamento de Segredos
+        run: |
+          echo "Auditando arquivos por senhas ou chaves em texto claro..."
+          if grep -r -i --exclude-dir={.git,node_modules,venv} "BEGIN PRIVATE KEY" .; then
+            echo "ERRO: Chave privada detectada no repositório!"
+            exit 1
+          fi
+          echo "Nenhum segredo crítico detectado."

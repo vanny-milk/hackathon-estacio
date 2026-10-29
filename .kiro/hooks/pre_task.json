@@ -1,0 +1,10 @@
+{
+  "$schema": "https://kiro.dev/schemas/hook-v1.json",
+  "name": "spec-guard-pre-task",
+  "description": "Garante que o agente leia a especificação antes de iniciar a execução de uma tarefa",
+  "trigger": "PreTaskExecution",
+  "action": {
+    "type": "prompt",
+    "prompt": "Antes de gerar ou modificar código, consulte os critérios de aceite em requirements.md e a arquitetura em design.md correspondente a esta tarefa."
+  }
+}
