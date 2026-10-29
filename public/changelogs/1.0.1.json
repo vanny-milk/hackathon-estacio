@@ -1,0 +1,21 @@
+{
+  "version": "1.0.1",
+  "date": "2026-10-29",
+  "title": "Governança de Commits Local e Cloud",
+  "highlights": [
+    "Instituição da política oficial de commits locais com incremento SemVer contínuo",
+    "Criação do Gatekeeper pré-push em 5 fases para eliminação de erros de deploy",
+    "Integração das diretrizes de versionamento com o Kiro IDE e Spec-Driven Development"
+  ],
+  "sections": [
+    {
+      "category": "Governança & Qualidade",
+      "items": [
+        "Criação do Hub Central de Governança de Commits (commit-policy.md)",
+        "Criação da Política de Commits Locais e Staging Seletivo Inteligente (commit-policy-local.md)",
+        "Criação da Política de Release Nuvem e Deploy Oficial (commit-policy-cloud.md)",
+        "Sincronização das regras de steering do Kiro IDE em git-workflow-conventions.md"
+      ]
+    }
+  ]
+}

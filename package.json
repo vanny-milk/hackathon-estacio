@@ -1,0 +1,18 @@
+{
+  "name": "hackathon-estacio",
+  "version": "1.0.1",
+  "description": "Projeto estruturado com Kiro IDE e Spec-Driven Development (SDD) para o Hackathon Estácio",
+  "private": true,
+  "scripts": {
+    "version": "echo $npm_package_version"
+  },
+  "keywords": [
+    "hackathon",
+    "estacio",
+    "sdd",
+    "kiro-ide",
+    "clean-architecture"
+  ],
+  "author": "Giovanny Leite",
+  "license": "MIT"
+}
