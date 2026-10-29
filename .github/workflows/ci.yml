@@ -25,7 +25,11 @@ jobs:
       - name: Verificação contra Vazamento de Segredos
         run: |
           echo "Auditando arquivos por senhas ou chaves em texto claro..."
-          if grep -r -i --exclude-dir={.git,node_modules,venv} "BEGIN PRIVATE KEY" .; then
+          # O padrão regex não casa com o próprio texto deste arquivo (evita falso positivo)
+          # e cobre cabeçalhos PEM com tipo de chave (RSA, EC, DSA, OPENSSH).
+          # Não escreva um cabeçalho PEM literal neste arquivo: ele seria detectado.
+          # -l lista apenas os nomes dos arquivos, sem imprimir conteúdo sensível no log.
+          if grep -rIl -i -E --exclude-dir={.git,node_modules,venv} "BEGIN [A-Z ]*PRIVATE KEY" .; then
             echo "ERRO: Chave privada detectada no repositório!"
             exit 1
           fi
